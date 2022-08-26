@@ -1,14 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
 function App() {
-  const inputValue = document.querySelectorAll(".input-number")
+  
 
   let [answer, setAnswer] = useState()
+  let [num, setNum] = useState({num1: 0, num2: 0})
+
   function clickHandler(input){
-    let num1 = Number(inputValue[0].value)
-    let num2 = Number(inputValue[1].value)
+    
     switch (input) {
       case "add":
         setAnswer(num1 + num2);
@@ -29,8 +29,8 @@ function App() {
   }
   return (
     <div className="App">
-      <input type="number" className='input-number'></input>
-      <input type="number" className='input-number'></input>
+      <input type="number" onChange = {(event) => setNum(prev => ({...prev, num1: Number(event.target.value)}))}></input>
+      <input type="number" onChange = {(event) => setNum(prev => ({...prev, num2: Number(event.target.value)}))}></input>
       <button onClick={() => clickHandler("add")}>+</button>
       <button onClick={() => clickHandler("sub")}>-</button>
       <button onClick={() => clickHandler("mul")}>X</button>
